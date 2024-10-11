@@ -14,6 +14,7 @@ numeric_columns = data.select_dtypes(include=[np.number]).columns
 # Khởi tạo ứng dụng Dash
 app = dash.Dash(__name__)
 app.title = "Dashboard Phân Tích Cổ Phiếu Tesla"
+server = app.server  # Định nghĩa server cho Heroku
 
 # Bố cục giao diện với các lựa chọn điều khiển
 app.layout = html.Div(children=[
@@ -97,7 +98,7 @@ def update_box(x_col):
     Input('scatter-x', 'value')  # Sử dụng bất kỳ đầu vào nào để kích hoạt
 )
 def update_heatmap(_):
-    correlation_matrix = numeric_columns = data.select_dtypes(include=[np.number]).corr()
+    correlation_matrix = data.select_dtypes(include=[np.number]).corr()
     fig = go.Figure(data=go.Heatmap(
         z=correlation_matrix.values,
         x=correlation_matrix.columns,
