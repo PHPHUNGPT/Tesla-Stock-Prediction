@@ -3,3 +3,8 @@ plotly
 numpy
 pandas
 gunicorn
+streamlit 
+scikit-learn
+joblib
+matplotlib
+seaborn
